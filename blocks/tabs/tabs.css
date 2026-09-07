@@ -21,34 +21,40 @@
 .tabs .tabs-list button {
   flex: 0 0 max-content;
   margin: 0;
-  border: 1px solid #dadada;
+  border: 0;
   border-radius: 0;
-  padding: 0.5em;
+  padding: 0.6em 1.2em;
   background-color: var(--light-color);
-  color: initial;
-  font-weight: bold;
+  color: var(--text-color);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   line-height: unset;
   text-align: initial;
   text-overflow: unset;
   overflow: unset;
   white-space: unset;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, color 0.2s;
 }
 
 .tabs .tabs-list button p {
   margin: 0;
 }
 
+/* WKND: active tab is solid dark with white text */
 .tabs .tabs-list button[aria-selected='true'] {
-  border-bottom: 1px solid var(--background-color);
-  background-color: var(--background-color);
+  background-color: var(--dark-color);
+  color: #fff;
   cursor: initial;
 }
 
 .tabs .tabs-panel {
-  margin-top: -1px;
-  padding: 24px;
-  border: 1px solid #dadada;
+  margin-top: 0;
+  padding: 24px 0;
+  border: 0;
+  border-top: 2px solid var(--dark-color);
   overflow: auto;
 }
 
