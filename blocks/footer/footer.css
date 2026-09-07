@@ -37,7 +37,15 @@ footer .footer a:hover {
   text-decoration: none;
 }
 
-/* logo */
+/* logo rendered via the icon convention (:wknd-logo-light:) — override the
+   24x24 default .icon sizing */
+footer .footer .icon,
+footer .footer .icon-wknd-logo-light {
+  width: 120px;
+  height: auto;
+  display: inline-block;
+}
+
 footer .footer img {
   width: 120px;
   height: auto;

@@ -149,6 +149,15 @@ header .nav-brand {
   line-height: 1;
 }
 
+/* logo rendered via the icon convention (:wknd-logo:) — override the 24x24
+   default .icon sizing so the wordmark shows at full width */
+header nav .nav-brand .icon,
+header nav .nav-brand .icon-wknd-logo {
+  width: 110px;
+  height: auto;
+  display: block;
+}
+
 header nav .nav-brand img {
   width: 110px;
   height: auto;
