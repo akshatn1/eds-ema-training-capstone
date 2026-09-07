@@ -1,0 +1,14 @@
+{
+  "type": "da",
+  "sites": {
+    "eds-ema-training-capstone": {
+      "previewOrg": "akshatn1",
+      "previewSite": "eds-ema-training-capstone",
+      "contentHostUrl": "https://content.da.live/akshatn1/eds-ema-training-capstone/",
+      "libraryUrl": "https://main--sta-boilerplate--aemdemos.aem.page/tools/sidekick/library.json"
+    }
+  },
+  "features": [
+    "site-planning"
+  ]
+}
