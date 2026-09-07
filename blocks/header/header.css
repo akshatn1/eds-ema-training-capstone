@@ -3,8 +3,56 @@ header .nav-wrapper {
   background-color: var(--background-color);
   width: 100%;
   z-index: 2;
-  position: fixed;
+  position: relative;
   border-bottom: 1px solid #e8e8e8;
+}
+
+/* WKND black utility bar (Sign In / locale) — full-width strip above the header.
+   Desktop-only, matching the source (mobile folds these into the drawer). */
+header .nav-utility-bar {
+  display: none;
+  background-color: var(--dark-color);
+  color: #f7f7f7;
+}
+
+@media (width >= 900px) {
+  header .nav-utility-bar {
+    display: block;
+  }
+}
+
+header .nav-utility {
+  box-sizing: border-box;
+  max-width: 1264px;
+  margin: auto;
+  padding: 3px 24px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+header .nav-utility ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+}
+
+:where(header .nav-utility) a:any-link {
+  color: #f7f7f7;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+:where(header .nav-utility) a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+@media (width >= 900px) {
+  header .nav-utility {
+    padding: 3px 32px;
+  }
 }
 
 header nav {
@@ -36,17 +84,32 @@ header nav[aria-expanded='true'] {
     position: relative;
   }
 
+  /* taller white header row (≈150px total incl. padding); logo left,
+     nav centred, search right — matches wknd.site */
   header nav {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template: 'brand sections tools' auto / 1fr auto 1fr;
+    align-items: center;
     gap: 0 32px;
     max-width: 1264px;
+    height: auto;
+    min-height: 150px;
     padding: 0 32px;
   }
 
   header nav[aria-expanded='true'] {
-    min-height: 0;
+    min-height: 150px;
     overflow: visible;
+  }
+
+  /* nav centred in the middle column */
+  header nav .nav-sections {
+    justify-self: center;
+  }
+
+  /* search pinned to the right column */
+  header nav .nav-tools {
+    justify-self: end;
   }
 }
 
