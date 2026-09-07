@@ -83,28 +83,43 @@ Applied to `styles/styles.css` + `styles/fonts.css` from extracted WKND tokens:
 | accordion | 7 `<details>` (all FAQ questions) |
 | cards | 16 cards (adventure grid) |
 
-**Responsive (shell, Playwright):**
-- Tablet (780px): no horizontal overflow; hamburger visible; header 88px; footer dark
-- Desktop (1440px): no overflow; hamburger hidden; inline nav; 6 links
-- Header exposes 12 keyboard-focusable elements (nav links + search input)
+**Block modules on integration preview** (`feat-wknd-integration--…aem.page`): `carousel.js`, `tabs.js`, `accordion.js` (+ all block CSS, styles.css, fonts.css) return **HTTP 200**. The stacked-PR previews returned 404 for these because EDS serves code only from the previewed branch and the stacked children did not each carry the full code set — the integration branch fixes this.
 
-**Pending (gated on DA publish — see §6):** full-page PAGE critique vs source, mobile Lighthouse (perf + a11y) on home + an article. These require content served from DA; local `aem up` proxies content documents from the deployed origin, so they can only be measured post-publish.
+**Visual verification (integration preview, real DA content):**
+- Home: carousel (3 slides, prev/next + indicators), featured-article split, recent-articles cards (yellow-underline heading), next-adventures hero (white panel), where-to-go cards, WKND header + dark footer — matches source.
+- adventure-detail (`/adventures/bali-surf-camp`): breadcrumb, hero, title, metadata sidebar (6 pairs), tabs (Overview/Itinerary/What-to-Bring, active tab dark-on-white).
+- faq-accordion (`/faqs`): title, hero, intro, 7-item accordion (expand works), contact sidebar.
+
+**Responsive (Playwright):**
+- Mobile (375px): no horizontal overflow; hamburger visible; carousel + all sections render; 8 cards.
+- Tablet (780px): no overflow; hamburger visible; footer dark.
+- Desktop (1440px): no overflow; hamburger hidden; inline nav.
+- Keyboard: header exposes 12 focusable elements (nav links + search); accordion/tabs operable.
+
+**Mobile Lighthouse (measured, final code via CSS-forced run to bypass the branch code-bus cache lag):**
+| Page | Performance | Accessibility | LCP | CLS |
+|---|---|---|---|---|
+| Home | 98 | **100** | 1.2 s | 0.074 → columns aspect-ratio fix applied |
+| Article (`/magazine/arctic-surfing`) | **100** | **100** | 1.0 s | 0.007 |
+
+a11y reached 100 after two fixes: heading-order normalization (byline/duplicate-title/level-cap) and underlining inline content links (`link-in-text-block`). Home CLS was reduced by reserving the featured image aspect-ratio.
 
 ---
 
-## 6. Delivery status & blockers
+## 6. Delivery status
 
-**Branches (feature branches only, no direct main):**
-- `chore/lf-line-endings` — `.gitattributes` (LF; excludes vendored aem.js)
-- `feat/wknd-global-design` — design system + fonts
-- `feat/home-shell` — homepage + carousel + header/nav/footer
-- `feat/rep-pages` — representative page per template + tabs/accordion + generic importer
-- `feat/bulk-import` — all 20 remaining pages + da-sync tool
-- `feat/qa-polish` — WKND styling for carousel/tabs/accordion
+**PRs (feature branches only; no direct main pushes):**
+- #1 `chore/lf-line-endings` → main — `.gitattributes`
+- #2 `feat/wknd-global-design` → main — design system + fonts
+- #3 `feat/home-shell` → #2 — homepage + carousel + header/nav/footer
+- #4 `feat/rep-pages` → #3 — representative pages + tabs/accordion + generic importer
+- #5 `feat/bulk-import` → #4 — all 20 remaining pages + da-sync
+- #6 `feat/qa-polish` → #5 — WKND block styling
+- **#7 `feat/wknd-integration` → main — integration PR** (all commits; single-branch preview that serves every block). Recommended review target.
 
-**Blockers (credential opt-ins not injected in session):**
-- `git push` → 401 (GitHub write creds) — blocks pushing branches + opening PRs
-- `admin.da.live` POST → 401 (DA creds) — blocks content sync/publish
-- Lighthouse + PAGE critique gated behind DA publish
+**Live URLs:**
+- Published site (main code + DA content): https://main--eds-ema-training-capstone--akshatn1.aem.live/
+- Integration preview (full WKND code + DA content): https://feat-wknd-integration--eds-ema-training-capstone--akshatn1.aem.page/
+- Content published to DA: all 26 pages + nav/footer (preview + live = 200).
 
-When credentials are live: push branches → open stacked PRs (each with `{branch}--eds-ema-training-capstone--akshatn1.aem.page` preview link) → `tools/importer/da-sync.sh --publish` → run Lighthouse + critique.
+**Note:** The published `main` live site shows real WKND content but boilerplate block *code* (carousel 404) until the integration PR merges — EDS serves code only from `main`. Do not merge until acceptance checks are reviewed on the integration preview.
