@@ -1,25 +1,41 @@
+/* WKND "Featured Article" split: image ~61% + light-grey text panel ~37%,
+   flush (no gap), CTA (yellow button) inside the grey panel. */
 .columns > div {
   display: flex;
   flex-direction: column;
+  background-color: var(--light-color);
 }
 
 .columns img {
   width: 100%;
-  height: auto;
-  aspect-ratio: 3 / 2;
+  height: 100%;
+  aspect-ratio: 16 / 11;
   object-fit: cover;
+  display: block;
 }
 
 .columns > div > div {
   order: 1;
+  box-sizing: border-box;
+  padding: 28px 32px;
 }
 
 .columns > div > .columns-img-col {
   order: 0;
+  padding: 0;
 }
 
 .columns > div > .columns-img-col img {
   display: block;
+}
+
+/* "Featured Article" eyebrow */
+.columns > div > div > p:first-child {
+  margin-top: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: var(--body-font-size-xs);
+  color: var(--dark-color);
 }
 
 /* WKND: render a lone CTA link in the text column as a yellow button */
@@ -45,13 +61,23 @@
 
 @media (width >= 900px) {
   .columns > div {
-    align-items: center;
+    align-items: stretch;
     flex-direction: unset;
-    gap: 24px;
+    gap: 0;
+  }
+
+  /* image ~61%, text panel ~37% (measured from wknd.site) */
+  .columns > div > .columns-img-col {
+    flex: 0 0 62%;
+    order: unset;
   }
 
   .columns > div > div {
     flex: 1;
     order: unset;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 44px;
   }
 }

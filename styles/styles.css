@@ -71,7 +71,19 @@ body.appear {
 }
 
 header {
-  height: var(--nav-height);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+
+  /* reserve header height before the nav block loads so main doesn't shift
+     down (CLS). Mobile ~64px; desktop ~194px (utility bar + one-row band). */
+  min-height: 64px;
+}
+
+@media (width >= 900px) {
+  header {
+    min-height: 194px;
+  }
 }
 
 header .header,
@@ -170,6 +182,30 @@ a:hover {
 /* buttons */
 p.button-wrapper {
   margin: 12px 0;
+}
+
+/* WKND section CTA: a lone default-content link (e.g. "All Articles", "All
+   Trips") renders as the yellow button. Declared before the section colour
+   rules to satisfy no-descending-specificity. */
+:where(main .default-content-wrapper p) > a:only-child {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 8px;
+  padding: 12px 28px;
+  background-color: var(--accent-color);
+  color: var(--accent-text-color);
+  font-size: var(--body-font-size-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+:where(main .default-content-wrapper p) > a:only-child:hover {
+  background-color: #ffd400;
+  color: var(--accent-text-color);
+  text-decoration: none;
 }
 
 /* WKND buttons: squared, uppercase, semibold; default = yellow accent CTA */
@@ -283,7 +319,7 @@ main > .section {
 }
 
 main > .section > div {
-  max-width: 1200px;
+  max-width: 1164px;
   margin: auto;
   padding: 0 24px;
 }
@@ -327,3 +363,6 @@ main .section > div > h3:first-child::after {
   margin-top: 12px;
   background-color: var(--accent-color);
 }
+
+/* WKND section CTA: a lone default-content link (e.g. "All Articles", "All
+   Trips") renders as the yellow button, matching the source. */

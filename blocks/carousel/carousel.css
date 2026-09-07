@@ -1,22 +1,22 @@
-/* WKND hero carousel — full-bleed image with a wide overlapping white panel,
-   dots centred below the panel, prev/next at the bottom-right. Measured from
-   wknd.site: image 640px tall at 1440, panel x124/w1192 overlapping the image
-   bottom, object-fit cover / position 50% 50%. */
+/* WKND hero carousel — image capped at the site's 1680px page width (centred
+   with gutters above 1680, edge-to-edge below), image 640px tall, wide white
+   panel overlapping the bottom, dots centred below, prev/next lower-right.
+   Measured from wknd.site at 1903px: hero x112 w1680, image 640px, panel
+   x356 w1192 overlapping the image bottom. */
 
-/* full-bleed: neutralise the section wrapper's max-width + padding so the
-   carousel spans edge to edge without a 100vw scrollbar-overflow. Selector
-   specificity (0,2,1) beats styles.css `main > .section > div` (0,1,2). */
+/* cap the hero wrapper at 1680 (page width) instead of the 1164 content width;
+   selector specificity (0,2,1) beats styles.css `main > .section > div` (0,1,2) */
 main .section > .carousel-wrapper {
-  max-width: none;
+  max-width: 1680px;
   width: 100%;
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
 }
 
 .carousel {
   position: relative;
   width: 100%;
-  min-height: min(70vw, 640px);
+  min-height: min(45vw, 640px);
 }
 
 .carousel .carousel-slides-container {
@@ -50,7 +50,7 @@ main .section > .carousel-wrapper {
   justify-content: flex-end;
   position: relative;
   width: 100%;
-  min-height: min(70vw, 640px);
+  min-height: min(70vw, 520px);
 }
 
 /* full-bleed background image */
