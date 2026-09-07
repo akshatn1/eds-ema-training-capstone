@@ -156,7 +156,7 @@ a:hover {
 
 :where(header) a:any-link,
 :where(footer ul) a:any-link,
-:where(footer) a:has(img),
+:where(footer a:has(img)),
 :where(main .cards) a:any-link,
 :where(a.button):any-link,
 :where(.carousel .carousel-slide-content p, .columns > div > div > p, .hero > div p) > a:only-child {
