@@ -74,6 +74,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 20;
+
   /* reserve header height before the nav block loads so main doesn't shift
      down (CLS). Mobile ~64px; desktop ~194px (utility bar + one-row band). */
   min-height: 64px;
