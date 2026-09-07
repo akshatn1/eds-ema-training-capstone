@@ -1,0 +1,44 @@
+{
+  "variantName": "tabs",
+  "baseBlock": "tabs",
+  "version": "1.0.0",
+  "created": "2026-09-07T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://wknd.site/us/en/adventures/bali-surf-camp.html",
+    "originPage": "adventure detail page (adventure-detail template)",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "tabbed-content",
+    "imagePattern": "mixed"
+  },
+  "contentPattern": {
+    "structure": "one row per tab: tab label + rich-text panel content",
+    "buttonCount": 0,
+    "imageCount": 1,
+    "tabCount": 3
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "adventure detail pages (Overview / Itinerary / What to Bring)",
+      "any page needing a tabbed content switcher for rich-text panels"
+    ],
+    "notSuitableFor": [
+      "expandable Q&A (use accordion)",
+      "rotating image galleries (use carousel)"
+    ]
+  },
+  "repoConventions": {
+    "plainBlockName": true,
+    "note": "This repo uses plain block names (cards/columns/hero/carousel) with no variant suffixes. tabs follows the same convention. JS imports only toClassName from the vendored scripts/aem.js (confirmed exported); no fetchPlaceholders import (this repo's aem.js does not export it).",
+    "projectType": "da"
+  },
+  "usage": {
+    "pagesUsing": ["/adventures/bali-surf-camp"],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-07T00:00:00.000Z",
+    "sharedAcrossTemplate": "adventure-detail (16 pages share this template/structure)"
+  }
+}
