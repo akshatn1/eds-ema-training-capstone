@@ -329,3 +329,26 @@ main .section > div > h3:first-child::after {
   margin-top: 12px;
   background-color: var(--accent-color);
 }
+
+/* WKND section CTA: a lone default-content link (e.g. "All Articles", "All
+   Trips") renders as the yellow button, matching the source. */
+:where(main .default-content-wrapper p) > a:only-child {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 8px;
+  padding: 12px 28px;
+  background-color: var(--accent-color);
+  color: var(--accent-text-color);
+  font-size: var(--body-font-size-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+:where(main .default-content-wrapper p) > a:only-child:hover {
+  background-color: #ffd400;
+  color: var(--accent-text-color);
+  text-decoration: none;
+}
