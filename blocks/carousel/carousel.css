@@ -199,9 +199,10 @@
     padding: 16px 12px;
   }
 
-  /* arrows bottom-right of the whole carousel */
+  /* arrows at the bottom-right edge of the image (source places them low-right,
+     not vertically centred); align to the panel's right edge */
   .carousel .carousel-navigation-buttons {
-    bottom: 92px;
-    right: calc((100% - min(1192px, calc(100% - 96px))) / 2 + 12px);
+    bottom: 12px;
+    right: calc((100% - min(1192px, calc(100% - 96px))) / 2);
   }
 }
