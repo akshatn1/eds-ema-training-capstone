@@ -1,0 +1,40 @@
+{
+  "variantName": "carousel",
+  "baseBlock": "carousel",
+  "version": "1.0.0",
+  "created": "2026-09-07T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://wknd.site/us/en.html",
+    "originPage": "WKND homepage",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "spacious",
+    "purpose": "hero",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "image + heading + description + CTA",
+    "buttonCount": 1,
+    "imageCount": 1,
+    "slidesObserved": 3
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "full-width hero slideshows",
+      "rotating promotional highlights",
+      "image galleries with overlaid text and a CTA per slide"
+    ],
+    "notSuitableFor": [
+      "single static hero (use hero block)",
+      "grids of uniform items (use cards)"
+    ]
+  },
+  "namingNote": "Plain block name used to match this repo's existing convention (cards, columns, hero) rather than a hyphenated variant name. Carousel is new to the repo; the vanilla library carousel was used as the template source.",
+  "usage": {
+    "pagesUsing": ["/"],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-07T00:00:00.000Z"
+  }
+}

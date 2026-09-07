@@ -11,3 +11,7 @@ helix-importer-ui
 # Ensure these files are tracked
 !CLAUDE.md
 !AGENTS.md
+
+# Generated importer artifacts (not source)
+tools/importer/*.bundle.js
+tools/importer/reports/
