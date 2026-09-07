@@ -139,15 +139,28 @@ button {
   font: inherit;
 }
 
-/* links */
+/* links: inline content links are underlined so they are distinguishable from
+   body text by more than colour (WCAG 1.4.1 / Lighthouse link-in-text-block).
+   Chrome (nav), footer, and button-styled links opt out — they carry their own
+   non-colour affordance (layout, uppercase, hover accent). */
 a:any-link {
   color: var(--link-color);
-  text-decoration: none;
+  text-decoration: underline;
   overflow-wrap: break-word;
 }
 
 a:hover {
   color: var(--link-hover-color);
+  text-decoration: underline;
+}
+
+:where(header, footer, main .cards) a:any-link,
+:where(a.button):any-link,
+:where(.carousel .carousel-slide-content p, .columns > div > div > p, .hero > div p) > a:only-child {
+  text-decoration: none;
+}
+
+:where(header, footer, main .cards) a:hover {
   text-decoration: underline;
 }
 
