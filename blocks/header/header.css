@@ -410,9 +410,22 @@ header nav .nav-search input::placeholder {
   color: #808080;
 }
 
-/* on mobile the search sits below the nav links inside the drawer */
+/* on mobile the search sits below the nav links inside the drawer and must not
+   exceed the viewport (fixed min-width caused horizontal overflow) */
 @media (width < 900px) {
+  header nav .nav-tools {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
   header nav .nav-search {
     margin-top: 16px;
+    width: 100%;
+  }
+
+  header nav .nav-search form {
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
   }
 }
