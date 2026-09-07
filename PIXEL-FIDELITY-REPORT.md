@@ -1,5 +1,44 @@
 # WKND Pixel-Fidelity Correction Report
 
+> ## Pass 2 — Desktop layout-regression corrections (branch `fix/wknd-layout-fix`, from `a2be7b7`)
+>
+> **Preview:** https://fix-wknd-layout-fix--eds-ema-training-capstone--akshatn1.aem.page/
+> **Source measured live at 1903/1440/768/375** (spec: `migration-work/pixel-fidelity/source-spec-1903.json`).
+> Key finding: the WKND site is capped at **max-width 1680px** (hero spans that cap), inner content at **1164px** — the prior pass wrongly used 1200px + an unconditional 100vw hero.
+>
+> ### Regressions fixed (source vs before vs after @1903, measured)
+> | Item | Source | Before (regressed) | After |
+> |---|---|---|---|
+> | Header position | fixed/sticky (stays on scroll) | `relative` — disappeared on scroll | **sticky, top:0 at y=0/700/1200/1800** ✅ |
+> | Header height | ~194px | ~229px, 3 stacked bands | **197px, one row** ✅ |
+> | Logo | 128×48 | 110×41 | **128×48** ✅ |
+> | Logo/nav/search | one vertically-centred band | 3 bands (y47 / y117 / y166) | **one band (centres y111–113)** ✅ |
+> | Landmarks | header/nav/footer | none exposed | `banner` + `nav[aria-label]` + `contentinfo` ✅ |
+> | Hero width | capped 1680 (gutters >1680) | full viewport (100vw) | **capped 1680, x112 w1680** ✅ |
+> | Hero image height | ~640px | ~494px | **640px** ✅ |
+> | Hero panel | overlaps image bottom (y~656) | premature (y482) | **overlaps bottom (x356 w1192)** ✅ |
+> | Featured Article | 1164px, 62/38, grey panel, ~505px | 1192px, ~50/50, white, ~390px | **1164px, 62/38, grey, ~527px** ✅ |
+> | Recent Articles | no card shell, uppercase, grey trunc desc, yellow btn | bordered cards, blue serif titles, blue text link | **no shell, uppercase titles, grey 2-line desc, yellow btn** ✅ |
+> | Next Adventures | capped 1680 | full viewport | **capped 1680** ✅ |
+>
+> ### Validation (measured on branch preview)
+> - **No horizontal overflow** at 1903/1440/768/375.
+> - **Keyboard/a11y:** hamburger opens drawer, **Escape closes it**, no focus trap; `nav[aria-label="Main navigation"]` landmark.
+> - **Mobile Lighthouse:** Home **Perf 99 / A11y 100** (LCP 1.2s, CLS 0.074); Article **Perf 100 / A11y 100** (LCP 1.1s, CLS 0.029). (A sticky-header CLS regression to 0.198 was caught mid-pass and fixed by reserving header height → 0.074.)
+> - **Templates** (magazine, arctic-surfing, adventures, bali-surf-camp, faqs, about-us): 200, sticky header + 1164 content cap propagated, no overflow.
+> - `npm run lint` clean. `scripts/aem.js` untouched. No DA content changed (nav utility already published & compatible with main).
+>
+> ### Files changed (pass 2)
+> `styles/styles.css` (content cap 1164, sticky+reserved header, section CTA button), `blocks/header/header.{css,js}` (sticky, one-row grid, 128px logo, aria-label), `blocks/carousel/carousel.css` (1680 cap not 100vw), `blocks/columns/columns.css` (62/38 grey featured), `blocks/cards/cards.css` (no shell, uppercase), `blocks/hero/hero.css` (1680 cap).
+>
+> ### Remaining differences (honest)
+> - Home CLS 0.074 (good, <0.1; not 0 — featured image + carousel settle).
+> - about-us contributor cards render text-only (person photos are XF-sourced in the original content; not a layout regression).
+>
+> ---
+
+## Pass 1 (superseded by Pass 2 for desktop layout)
+
 **Source of truth:** https://wknd.site/us/en.html (+ linked US-EN pages)
 **Target:** https://main--eds-ema-training-capstone--akshatn1.aem.page/
 **Branch:** `fix/wknd-pixel-fidelity` (from merge commit `8c8d41e`)
