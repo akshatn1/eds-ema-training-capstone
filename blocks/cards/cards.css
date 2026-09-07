@@ -1,19 +1,18 @@
+/* WKND card grid (Recent Articles / destination cards): no bordered shell,
+   compact uppercase black titles, small grey uppercase truncated descriptions,
+   image ~260x200 with small gaps. Measured from wknd.site. */
 .cards > ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px 24px;
 }
 
 .cards > ul > li {
-  border: 1px solid #dadada;
-  background-color: var(--background-color);
-}
-
-.cards .cards-card-body {
-  margin: 16px;
+  border: 0;
+  background-color: transparent;
 }
 
 .cards .cards-card-image {
@@ -22,6 +21,49 @@
 
 .cards > ul > li img {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 13 / 10;
   object-fit: cover;
+}
+
+.cards .cards-card-body {
+  margin: 12px 0 0;
+}
+
+/* title: compact black bold uppercase sans (not blue serif) */
+.cards .cards-card-body h3,
+.cards .cards-card-body h2,
+.cards .cards-card-body strong {
+  margin: 0 0 8px;
+  font-family: var(--body-font-family);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+.cards .cards-card-body h3 a:any-link,
+.cards .cards-card-body h2 a:any-link {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.cards .cards-card-body h3 a:hover,
+.cards .cards-card-body h2 a:hover {
+  color: var(--text-color);
+  text-decoration: underline;
+}
+
+/* description: small grey uppercase, truncated to 2 lines like the source */
+.cards .cards-card-body p {
+  margin: 0;
+  font-size: var(--body-font-size-xs);
+  line-height: 1.5;
+  color: #6a6a6a;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }

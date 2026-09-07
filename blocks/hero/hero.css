@@ -1,5 +1,10 @@
-.hero-container .hero-wrapper {
-  max-width: unset;
+/* Next Adventures feature: capped at the site's 1680px page width (centred),
+   not full viewport — matches wknd.site. Specificity beats styles.css
+   `main > .section > div` so it overrides the 1164 content cap. */
+main .section > .hero-wrapper {
+  max-width: 1680px;
+  width: 100%;
+  margin: 0 auto;
   padding: 0;
 }
 
