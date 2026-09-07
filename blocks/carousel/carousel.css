@@ -3,14 +3,19 @@
    wknd.site: image 640px tall at 1440, panel x124/w1192 overlapping the image
    bottom, object-fit cover / position 50% 50%. */
 
-/* full-bleed: break out of the section's 1200px max-width + 32px padding using
-   a viewport-width technique so the image spans edge to edge (matches wknd). */
+/* full-bleed: neutralise the section wrapper's max-width + padding so the
+   carousel spans edge to edge without a 100vw scrollbar-overflow. Selector
+   specificity (0,2,1) beats styles.css `main > .section > div` (0,1,2). */
+main .section > .carousel-wrapper {
+  max-width: none;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
 .carousel {
   position: relative;
-  width: 100vw;
-  max-width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+  width: 100%;
 }
 
 .carousel .carousel-slides-container {
