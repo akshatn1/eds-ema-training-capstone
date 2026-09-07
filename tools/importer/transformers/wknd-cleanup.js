@@ -102,6 +102,50 @@ export default function transform(hookName, element, payload) {
     WebImporter.DOMUtils.remove(element, ['link', 'noscript', 'script']);
     element.querySelectorAll('meta').forEach((m) => m.remove());
 
+    // Accessibility: fix heading order (Lighthouse heading-order). WKND article
+    // pages render the author byline as an <h4> ("By Jacob Wester") right under
+    // the <h1>, causing an h1 -> h4 skip. A byline is not a section heading, so
+    // demote any short "By …" h4/h5/h6 to a <p><em> byline anywhere in content.
+    const doc = element.ownerDocument;
+    element.querySelectorAll('h4, h5, h6').forEach((h) => {
+      const text = (h.textContent || '').trim();
+      if (/^by\s+\S/i.test(text) && text.length <= 60) {
+        const p = doc.createElement('p');
+        const em = doc.createElement('em');
+        em.textContent = text;
+        p.appendChild(em);
+        h.replaceWith(p);
+      }
+    });
+
+    // Drop a redundant secondary title that repeats the <h1> verbatim (WKND
+    // article hero emits a duplicate title as an <h3>, causing an h1 -> h3 skip).
+    const mainH1 = element.querySelector('h1');
+    if (mainH1) {
+      const h1text = (mainH1.textContent || '').trim().toLowerCase();
+      element.querySelectorAll('h3').forEach((h3) => {
+        if ((h3.textContent || '').trim().toLowerCase() === h1text) h3.remove();
+      });
+    }
+
+    // Normalize remaining heading-order skips (e.g. an h5 "SHARE THIS STORY"
+    // sidebar label after h2 content). Walk headings in order; never let a level
+    // jump more than one deeper than the previous heading.
+    let prevLevel = 0;
+    element.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
+      const level = Number(h.tagName[1]);
+      if (prevLevel && level > prevLevel + 1) {
+        const fixed = prevLevel + 1;
+        const nh = doc.createElement(`h${fixed}`);
+        [...h.attributes].forEach((a) => nh.setAttribute(a.name, a.value));
+        nh.innerHTML = h.innerHTML;
+        h.replaceWith(nh);
+        prevLevel = fixed;
+      } else {
+        prevLevel = level;
+      }
+    });
+
     // Rewrite WKND internal links to EDS paths (site-wide; applies to every page).
     element.querySelectorAll('a[href]').forEach((a) => {
       const next = rewriteWkndHref(a.getAttribute('href'));
