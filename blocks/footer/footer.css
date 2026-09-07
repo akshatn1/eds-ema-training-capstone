@@ -1,20 +1,95 @@
+/* WKND footer: dark background, light logo, nav, social, fine print */
 footer {
-  background-color: var(--light-color);
+  background-color: var(--dark-color);
+  color: #fff;
   font-size: var(--body-font-size-xs);
 }
 
 footer .footer > div {
   margin: auto;
   max-width: 1200px;
-  padding: 40px 24px 24px;
+  padding: 48px 24px 32px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px 40px;
+  align-items: start;
 }
 
 footer .footer p {
+  margin: 0 0 8px;
+}
+
+/* nav + social list links (declared before the generic link rules to satisfy
+   no-descending-specificity) */
+footer .footer ul a {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 13px;
+}
+
+footer .footer a:any-link {
+  color: #fff;
+}
+
+footer .footer a:hover {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+/* logo rendered via the icon convention (:wknd-logo-light:) — override the
+   24x24 default .icon sizing */
+footer .footer .icon,
+footer .footer .icon-wknd-logo-light {
+  width: 120px;
+  height: auto;
+  display: inline-block;
+}
+
+footer .footer img {
+  width: 120px;
+  height: auto;
+}
+
+/* nav + social lists */
+footer .footer ul {
+  list-style: none;
   margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+
+/* "Follow Us" heading */
+footer .footer h4 {
+  margin: 0 0 12px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #fff;
+}
+
+/* fine print block */
+footer .footer > div > :last-child p:last-child {
+  color: #b0b0b0;
+  line-height: 1.6;
+  max-width: 900px;
 }
 
 @media (width >= 900px) {
   footer .footer > div {
-    padding: 40px 32px 24px;
+    grid-template-columns: auto 1fr auto;
+    padding: 56px 32px 32px;
+    column-gap: 48px;
+  }
+
+  /* copyright/fine print spans the full width on its own row */
+  footer .footer > div > :last-child {
+    grid-column: 1 / -1;
+    border-top: 1px solid rgb(255 255 255 / 15%);
+    padding-top: 24px;
+    margin-top: 8px;
   }
 }

@@ -1,0 +1,162 @@
+{
+  "templates": [
+    {
+      "name": "card-listing",
+      "urls": [
+        "https://wknd.site/us/en/about-us.html",
+        "https://wknd.site/us/en/magazine.html"
+      ],
+      "coverageGaps": [],
+      "description": "Content page: page title followed by one or more titled grids of cards (image/name/role or featured teaser)",
+      "blocks": [
+        {
+          "name": "columns",
+          "instances": [
+            ".teaser.cmp-teaser--featured"
+          ]
+        },
+        {
+          "name": "cards",
+          "instances": [
+            ".image-list.list",
+            ".experiencefragment.cmp-experience-fragment--contributor"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "adventure-detail",
+      "urls": [
+        "https://wknd.site/us/en/adventures/bali-surf-camp.html",
+        "https://wknd.site/us/en/adventures/beervana-portland.html",
+        "https://wknd.site/us/en/adventures/climbing-new-zealand.html",
+        "https://wknd.site/us/en/adventures/colorado-rock-climbing.html",
+        "https://wknd.site/us/en/adventures/cycling-southern-utah.html",
+        "https://wknd.site/us/en/adventures/cycling-tuscany.html",
+        "https://wknd.site/us/en/adventures/downhill-skiing-wyoming.html",
+        "https://wknd.site/us/en/adventures/gastronomic-marais-tour.html",
+        "https://wknd.site/us/en/adventures/napa-wine-tasting.html",
+        "https://wknd.site/us/en/adventures/riverside-camping-australia.html",
+        "https://wknd.site/us/en/adventures/ski-touring-mont-blanc.html",
+        "https://wknd.site/us/en/adventures/surf-camp-costa-rica.html",
+        "https://wknd.site/us/en/adventures/tahoe-skiing.html",
+        "https://wknd.site/us/en/adventures/west-coast-cycling.html",
+        "https://wknd.site/us/en/adventures/whistler-mountain-biking.html",
+        "https://wknd.site/us/en/adventures/yosemite-backpacking.html"
+      ],
+      "coverageGaps": [],
+      "description": "Detail page: full-width hero image, title, left metadata sidebar of label/value pairs, and tabbed rich-text content",
+      "blocks": [
+        {
+          "name": "hero",
+          "instances": [
+            ".carousel.cmp-carousel--mini"
+          ]
+        },
+        {
+          "name": "columns",
+          "instances": [
+            ".contentfragment.cmp-contentfragment--elements"
+          ]
+        },
+        {
+          "name": "tabs",
+          "instances": [
+            ".tabs.panelcontainer",
+            ".cmp-tabs"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "adventure-listing",
+      "urls": [
+        "https://wknd.site/us/en/adventures.html"
+      ],
+      "coverageGaps": [],
+      "description": "Listing page: hero image with overlaid text panel, filter tab bar, and a responsive grid of image+title+summary cards",
+      "blocks": [
+        {
+          "name": "hero",
+          "instances": [
+            ".teaser.cmp-teaser--hero"
+          ]
+        },
+        {
+          "name": "cards",
+          "instances": [
+            ".cmp-tabs__tabpanel--active ul.cmp-image-list"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "faq-accordion",
+      "urls": [
+        "https://wknd.site/us/en/faqs.html"
+      ],
+      "coverageGaps": [],
+      "description": "Support page: title, hero image, intro paragraph, expandable accordion list, and a right contact sidebar",
+      "blocks": [
+        {
+          "name": "accordion",
+          "instances": [
+            ".accordion.cmp-accordion",
+            ".cmp-accordion"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "homepage",
+      "urls": [
+        "https://wknd.site/us/en.html"
+      ],
+      "coverageGaps": [],
+      "description": "Landing page: full-width hero carousel, featured-article split block, then multiple titled card grids",
+      "blocks": [
+        {
+          "name": "carousel",
+          "instances": [
+            ".carousel.cmp-carousel--hero",
+            "div.carousel.panelcontainer"
+          ]
+        },
+        {
+          "name": "columns",
+          "instances": [
+            ".teaser.cmp-teaser--featured"
+          ]
+        },
+        {
+          "name": "hero",
+          "instances": [
+            ".teaser.cmp-teaser--hero.cmp-teaser--imagebottom"
+          ]
+        },
+        {
+          "name": "cards",
+          "instances": [
+            ".image-list.list"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "article-detail",
+      "urls": [
+        "https://wknd.site/us/en/magazine/arctic-surfing.html",
+        "https://wknd.site/us/en/magazine/guide-la-skateparks.html",
+        "https://wknd.site/us/en/magazine/san-diego-surf.html",
+        "https://wknd.site/us/en/magazine/ski-touring.html",
+        "https://wknd.site/us/en/magazine/western-australia.html"
+      ],
+      "coverageGaps": [],
+      "description": "Article page: full-width hero image, title, author byline, long-form rich text with sub-headings and inline images, and a right related-links sidebar",
+      "blocks": []
+    }
+  ],
+  "metadata": {
+    "projectType": "da"
+  }
+}

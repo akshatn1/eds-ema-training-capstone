@@ -1,0 +1,63 @@
+.tabs .tabs-list {
+  display: flex;
+  gap: 0.5ch;
+  max-width: 100%;
+  font-size: var(--body-font-size-xs);
+  overflow-x: auto;
+}
+
+@media (width >= 600px) {
+  .tabs .tabs-list {
+    font-size: var(--body-font-size-s);
+  }
+}
+
+@media (width >= 900px) {
+  .tabs .tabs-list {
+    font-size: var(--body-font-size-m);
+  }
+}
+
+.tabs .tabs-list button {
+  flex: 0 0 max-content;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  padding: 0.6em 1.2em;
+  background-color: var(--light-color);
+  color: var(--text-color);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: unset;
+  text-align: initial;
+  text-overflow: unset;
+  overflow: unset;
+  white-space: unset;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.tabs .tabs-list button p {
+  margin: 0;
+}
+
+/* WKND: active tab is solid dark with white text */
+.tabs .tabs-list button[aria-selected='true'] {
+  background-color: var(--dark-color);
+  color: #fff;
+  cursor: initial;
+}
+
+.tabs .tabs-panel {
+  margin-top: 0;
+  padding: 24px 0;
+  border: 0;
+  border-top: 2px solid var(--dark-color);
+  overflow: auto;
+}
+
+.tabs .tabs-panel[aria-hidden='true'] {
+  display: none;
+}

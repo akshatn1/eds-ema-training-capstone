@@ -1,0 +1,44 @@
+{
+  "variantName": "accordion",
+  "baseBlock": "accordion",
+  "version": "1.0.0",
+  "created": "2026-09-07T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://wknd.site/us/en/faqs.html",
+    "originPage": "FAQs support page (faq-accordion template)",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "faq",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "one row per Q&A item: question label + rich-text answer body",
+    "buttonCount": 0,
+    "imageCount": 0,
+    "itemCount": 7
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "FAQ pages with expandable question/answer pairs",
+      "any page needing collapsible details/summary sections"
+    ],
+    "notSuitableFor": [
+      "tabbed content switchers (use tabs)",
+      "rotating image galleries (use carousel)"
+    ]
+  },
+  "repoConventions": {
+    "plainBlockName": true,
+    "note": "Plain block name (matches repo convention: cards/columns/hero/carousel/tabs — no variant suffixes). JS uses no external imports; this repo's vendored scripts/aem.js does not export fetchPlaceholders, and the native <details>/<summary> implementation needs none. Matches the Block Collection accordion content model (one row per item, 2 columns: label | body).",
+    "projectType": "da"
+  },
+  "usage": {
+    "pagesUsing": ["/faqs"],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-07T00:00:00.000Z",
+    "sharedAcrossTemplate": "faq-accordion (single page)"
+  }
+}

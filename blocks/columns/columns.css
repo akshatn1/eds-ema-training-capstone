@@ -5,6 +5,9 @@
 
 .columns img {
   width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
 }
 
 .columns > div > div {
@@ -17,6 +20,27 @@
 
 .columns > div > .columns-img-col img {
   display: block;
+}
+
+/* WKND: render a lone CTA link in the text column as a yellow button */
+.columns > div > div > p > a:only-child {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 8px;
+  padding: 12px 28px;
+  background-color: var(--accent-color);
+  color: var(--accent-text-color);
+  font-size: var(--body-font-size-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.columns > div > div > p > a:only-child:hover {
+  background-color: #ffd400;
+  color: var(--accent-text-color);
 }
 
 @media (width >= 900px) {
