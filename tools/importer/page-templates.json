@@ -8,7 +8,21 @@
       ],
       "coverageGaps": [],
       "description": "Content page: page title followed by one or more titled grids of cards (image/name/role or featured teaser)",
-      "blocks": []
+      "blocks": [
+        {
+          "name": "columns",
+          "instances": [
+            ".teaser.cmp-teaser--featured"
+          ]
+        },
+        {
+          "name": "cards",
+          "instances": [
+            ".image-list.list",
+            ".experiencefragment.cmp-experience-fragment--contributor"
+          ]
+        }
+      ]
     },
     {
       "name": "adventure-detail",
@@ -32,7 +46,27 @@
       ],
       "coverageGaps": [],
       "description": "Detail page: full-width hero image, title, left metadata sidebar of label/value pairs, and tabbed rich-text content",
-      "blocks": []
+      "blocks": [
+        {
+          "name": "hero",
+          "instances": [
+            ".carousel.cmp-carousel--mini"
+          ]
+        },
+        {
+          "name": "columns",
+          "instances": [
+            ".contentfragment.cmp-contentfragment--elements"
+          ]
+        },
+        {
+          "name": "tabs",
+          "instances": [
+            ".tabs.panelcontainer",
+            ".cmp-tabs"
+          ]
+        }
+      ]
     },
     {
       "name": "adventure-listing",
@@ -41,7 +75,20 @@
       ],
       "coverageGaps": [],
       "description": "Listing page: hero image with overlaid text panel, filter tab bar, and a responsive grid of image+title+summary cards",
-      "blocks": []
+      "blocks": [
+        {
+          "name": "hero",
+          "instances": [
+            ".teaser.cmp-teaser--hero"
+          ]
+        },
+        {
+          "name": "cards",
+          "instances": [
+            ".cmp-tabs__tabpanel--active ul.cmp-image-list"
+          ]
+        }
+      ]
     },
     {
       "name": "faq-accordion",
@@ -50,7 +97,15 @@
       ],
       "coverageGaps": [],
       "description": "Support page: title, hero image, intro paragraph, expandable accordion list, and a right contact sidebar",
-      "blocks": []
+      "blocks": [
+        {
+          "name": "accordion",
+          "instances": [
+            ".accordion.cmp-accordion",
+            ".cmp-accordion"
+          ]
+        }
+      ]
     },
     {
       "name": "homepage",
