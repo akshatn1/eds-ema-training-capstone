@@ -3,15 +3,14 @@
    wknd.site: image 640px tall at 1440, panel x124/w1192 overlapping the image
    bottom, object-fit cover / position 50% 50%. */
 
-/* full-bleed: break out of the section's 1200px max-width */
-.carousel-wrapper {
-  max-width: none;
-  width: 100%;
-  padding: 0;
-}
-
+/* full-bleed: break out of the section's 1200px max-width + 32px padding using
+   a viewport-width technique so the image spans edge to edge (matches wknd). */
 .carousel {
   position: relative;
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
 }
 
 .carousel .carousel-slides-container {
