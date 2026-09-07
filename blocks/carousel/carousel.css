@@ -67,6 +67,27 @@
   margin-top: 0;
 }
 
+/* WKND: render the slide CTA (a lone link in a paragraph) as a yellow button */
+.carousel .carousel-slide-content p > a:only-child {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 8px;
+  padding: 12px 28px;
+  background-color: var(--accent-color);
+  color: var(--accent-text-color);
+  font-size: var(--body-font-size-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.carousel .carousel-slide-content p > a:only-child:hover {
+  background-color: #ffd400;
+  color: var(--accent-text-color);
+}
+
 .carousel .carousel-slide-indicators {
   display: flex;
   flex-wrap: wrap;
