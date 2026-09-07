@@ -96,13 +96,25 @@ Applied to `styles/styles.css` + `styles/fonts.css` from extracted WKND tokens:
 - Desktop (1440px): no overflow; hamburger hidden; inline nav.
 - Keyboard: header exposes 12 focusable elements (nav links + search); accordion/tabs operable.
 
-**Mobile Lighthouse (measured, final code via CSS-forced run to bypass the branch code-bus cache lag):**
-| Page | Performance | Accessibility | LCP | CLS |
-|---|---|---|---|---|
-| Home | 98 | **100** | 1.2 s | 0.074 → columns aspect-ratio fix applied |
-| Article (`/magazine/arctic-surfing`) | **100** | **100** | 1.0 s | 0.007 |
+**Logo fix:** WKND header/footer logos rendered as `about:error` (DA rewrites raw
+`<img src="/icons/...">` in content). Switched to the EDS icon convention
+(`:wknd-logo:` / `:wknd-logo-light:`) which `decorateIcons` resolves to the
+code-served SVG at runtime and survives the pipeline. Verified on the integration
+preview: header logo `/icons/wknd-logo.svg` → 200 (renders 110×41), footer
+`/icons/wknd-logo-light.svg` → 200 (renders 120×45), both linked to `/`.
 
-a11y reached 100 after two fixes: heading-order normalization (byline/duplicate-title/level-cap) and underlining inline content links (`link-in-text-block`). Home CLS was reduced by reserving the featured image aspect-ratio.
+**Mobile Lighthouse (measured on the live integration preview):**
+| Page | Performance | Accessibility | LCP | CLS | TBT |
+|---|---|---|---|---|---|
+| Home | 99 | **100** | 1.5 s | 0.076 | 0 ms |
+| Article (`/magazine/arctic-surfing`) | **100** | **100** | 1.1 s | 0.008 | 0 ms |
+
+Accessibility is **100** on both after: heading-order normalization (byline/
+duplicate-title/level-cap) and underlining inline content links
+(`link-in-text-block`). Article CWV all green. Home CLS 0.076 (still "good",
+&lt; 0.1); a committed `columns` image aspect-ratio reservation reduces it further
+once the branch code-bus serves the updated block CSS (it was still serving the
+pre-fix `columns.css` at measurement time).
 
 ---
 
