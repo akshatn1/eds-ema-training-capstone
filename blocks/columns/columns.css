@@ -5,6 +5,9 @@
 
 .columns img {
   width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
 }
 
 .columns > div > div {
