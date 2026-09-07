@@ -16,6 +16,7 @@ main .section > .carousel-wrapper {
 .carousel {
   position: relative;
   width: 100%;
+  min-height: min(70vw, 640px);
 }
 
 .carousel .carousel-slides-container {
