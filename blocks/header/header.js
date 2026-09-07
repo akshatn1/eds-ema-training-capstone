@@ -1,4 +1,3 @@
-import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 // media query match that indicates mobile/tablet width
@@ -113,10 +112,8 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  // load nav as fragment
-  const navMeta = getMetadata('nav');
-  const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
-  const fragment = await loadFragment(navPath);
+  // load nav as fragment (metadata-independent: /nav works for localhost and DA/EDS)
+  const fragment = await loadFragment('/nav');
 
   // decorate nav DOM
   block.textContent = '';
@@ -149,6 +146,20 @@ export default async function decorate(block) {
         }
       });
     });
+  }
+
+  // build the search control in the tools section from its placeholder text
+  const navTools = nav.querySelector('.nav-tools');
+  if (navTools) {
+    const label = (navTools.textContent || 'Search').trim() || 'Search';
+    navTools.textContent = '';
+    const search = document.createElement('div');
+    search.className = 'nav-search';
+    search.innerHTML = `<form role="search" action="#" onsubmit="return false;">
+        <span class="nav-search-icon" aria-hidden="true"></span>
+        <input type="search" name="q" aria-label="${label}" placeholder="${label}">
+      </form>`;
+    navTools.append(search);
   }
 
   // hamburger for mobile
