@@ -23,26 +23,36 @@ mapfile -t FILES < <(find "$CONTENT_DIR" -name '*.plain.html' \
 
 echo "Syncing ${#FILES[@]} documents to DA (${ORG}/${SITE})"
 fail=0
+tmp="$(mktemp -d)"
+
+# DA's source API expects a full HTML document; wrap the inner-main fragment in
+# <body><main>…</main></body> so preview builds the content tree (a bare <div>
+# fragment renders empty).
+wrap() { # <src-file> <out-file>
+  { printf '<body><main>'; cat "$1"; printf '</main></body>'; } > "$2"
+}
+
 for f in "${FILES[@]}"; do
-  # content/foo/bar.plain.html -> DA path foo/bar.html ; index.plain.html -> index.html
   rel="${f#"$CONTENT_DIR"/}"
   daPath="${rel%.plain.html}.html"
+  w="${tmp}/doc.html"; wrap "$f" "$w"
   code=$(curl -s -o /dev/null -w '%{http_code}' -X POST \
-    -F "data=@${f};type=text/html" --max-time 60 "${DA}/${daPath}")
+    -F "data=@${w};type=text/html" --max-time 60 "${DA}/${daPath}")
   echo "  DA ${daPath} -> ${code}"
   [[ "$code" =~ ^2 ]] || fail=$((fail+1))
 done
 
-# nav + footer fragments live at the site root in DA
+# nav + footer fragments live at the site root in DA (also wrapped)
 for frag in nav footer; do
   if [ -f "${CONTENT_DIR}/${frag}.plain.html" ]; then
+    w="${tmp}/${frag}.html"; wrap "${CONTENT_DIR}/${frag}.plain.html" "$w"
     code=$(curl -s -o /dev/null -w '%{http_code}' -X POST \
-      -F "data=@${CONTENT_DIR}/${frag}.plain.html;type=text/html" --max-time 60 \
-      "${DA}/${frag}.html")
+      -F "data=@${w};type=text/html" --max-time 60 "${DA}/${frag}.html")
     echo "  DA ${frag}.html -> ${code}"
     [[ "$code" =~ ^2 ]] || fail=$((fail+1))
   fi
 done
+rm -rf "$tmp"
 
 echo "Upload complete (${fail} failures)."
 
