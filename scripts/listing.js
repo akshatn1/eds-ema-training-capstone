@@ -1,16 +1,16 @@
 /*
  * Shared index-driven listing helpers.
  *
- * Data source: the EDS query-index sheet at `/query-index.json`. Blocks import
- * these helpers to fetch the index once, then filter/sort/limit deterministically
- * from authored config. No hard-coded catalogs or path arrays.
+ * Data source: the generated EDS Query Index at `/content-index.json`. Blocks
+ * import these helpers to fetch the index once, then filter/sort/limit
+ * deterministically from authored config. No hard-coded catalogs or path arrays.
  *
- * query-index.json row fields (data contract):
+ * Query Index row fields (data contract):
  *   path, title, description, image, lastModified, publicationDate,
  *   template, type, category, tags, membersOnly, homeFeatured, homeOrder
  */
 
-const INDEX_URL = '/query-index.json';
+const INDEX_URL = '/content-index.json';
 let indexPromise;
 
 /** Fetch and cache the query index once per page load. */
