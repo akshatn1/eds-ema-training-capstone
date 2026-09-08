@@ -71,8 +71,7 @@ body.appear {
 }
 
 header {
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 20;
 
   /* reserve header height before the nav block loads so main doesn't shift
